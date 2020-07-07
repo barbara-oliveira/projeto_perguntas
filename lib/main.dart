@@ -7,12 +7,6 @@ class PerguntaApp extends StatelessWidget {
     print('Pergunta respondida');
   }
 
-  void Function() funcaoQueRetornaUmaOutraFuncao() {
-    return () {
-      print('Pergunta respondida #2');
-    };
-  }
-
   @override
   Widget build(BuildContext context) {
     final List<String> perguntas = [
@@ -34,11 +28,13 @@ class PerguntaApp extends StatelessWidget {
               ),
               RaisedButton(
                 child: Text('Resposta 2'),
-                onPressed: responder,
+                onPressed: () {
+                  print('Resposta 2');
+                },
               ),
               RaisedButton(
                 child: Text('Resposta 3'),
-                onPressed: funcaoQueRetornaUmaOutraFuncao(),
+                onPressed: () => print('Resposta 3'),
               ),
             ],
           )),
