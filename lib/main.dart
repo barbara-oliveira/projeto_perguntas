@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 
 main() => runApp(new PerguntaApp());
 
-class PerguntaApp extends StatelessWidget {
+class PerguntaAppState extends State<PerguntaApp> {
+  var perguntaSelecionada = 0;
+
   void responder() {
-    print('Pergunta respondida');
+    setState(() {
+      perguntaSelecionada++;
+    });
+    print('Pergunta selecionada: $perguntaSelecionada');
   }
 
   @override
@@ -21,23 +26,27 @@ class PerguntaApp extends StatelessWidget {
           ),
           body: Column(
             children: [
-              Text(perguntas.elementAt(0)),
+              Text(perguntas.elementAt(perguntaSelecionada)),
               RaisedButton(
                 child: Text('Resposta 1'),
                 onPressed: responder,
               ),
               RaisedButton(
                 child: Text('Resposta 2'),
-                onPressed: () {
-                  print('Resposta 2');
-                },
+                onPressed: responder,
               ),
               RaisedButton(
                 child: Text('Resposta 3'),
-                onPressed: () => print('Resposta 3'),
+                onPressed: responder,
               ),
             ],
           )),
     );
+  }
+}
+
+class PerguntaApp extends StatefulWidget {
+  PerguntaAppState createState() {
+    return PerguntaAppState();
   }
 }
